@@ -1,4 +1,4 @@
-@extends('index')
+@extends('layouts.master')
 @section('title', 'Laporan Sistem')
 
 @section('content')

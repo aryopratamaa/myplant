@@ -3,11 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
-});
-
-Route::get('/master', function () {
-    return view('layouts.master');
+    return view('dashboard');
 });
 
 Route::get('/kategori', function () {

@@ -1,4 +1,4 @@
-@extends('index')
+@extends('layouts.master')
 @section('title', 'Data Event')
 
 @section('content')
