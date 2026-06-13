@@ -17,16 +17,21 @@
 
         @include('partials.sidebar')
 
-        <div class="body-wrapper">
+        <div class="body-wrapper d-flex flex-column min-vh-100">
+            
             @include('partials.header')
 
-            <div class="container-fluid">
-                @yield('content')
+            <div class="container-fluid d-flex flex-column flex-grow-1">
+                
+                <div class="flex-grow-1">
+                    @yield('content')
+                </div>
 
-                <div class="py-6 px-6 text-center">
+                <div class="py-6 px-6 text-center mt-auto">
                     <p class="mb-0 fs-4">Design and Developed by <a href="#" target="_blank"
                             class="pe-1 text-primary">Mister Goyo</a></p>
                 </div>
+                
             </div>
         </div>
     </div>

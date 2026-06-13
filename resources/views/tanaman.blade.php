@@ -38,7 +38,7 @@
                 <tbody>
                     <tr>
                         <td class="border-bottom-0 d-flex align-items-center gap-3">
-                            <img src="https://images.unsplash.com/photo-1416879598555-25754637b988?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Monstera" class="rounded-circle object-fit-cover" width="45" height="45">
+                            <img src="https://png.pngtree.com/png-clipart/20240310/original/pngtree-monstera-deliciosa-monstera-giant-leaf-on-white-pot-air-purification-planthouse-png-image_14550252.png" alt="Monstera" class="rounded-circle object-fit-cover" width="45" height="45">
                             <div>
                                 <h6 class="fw-semibold mb-1 text-dark">Monstera Deliciosa</h6>
                                 <span class="text-muted fs-3">Janda Bolong</span>
@@ -59,7 +59,7 @@
                     </tr>
                     <tr>
                         <td class="border-bottom-0 d-flex align-items-center gap-3">
-                            <img src="https://images.unsplash.com/photo-1596547609652-9fc5d8d42850?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Lidah Buaya" class="rounded-circle object-fit-cover" width="45" height="45">
+                            <img src="https://unair.ac.id/wp-content/uploads/2022/05/Foto-by-Halodoc-3.jpg" alt="Lidah Buaya" class="rounded-circle object-fit-cover" width="45" height="45">
                             <div>
                                 <h6 class="fw-semibold mb-1 text-dark">Aloe Vera</h6>
                                 <span class="text-muted fs-3">Lidah Buaya</span>
