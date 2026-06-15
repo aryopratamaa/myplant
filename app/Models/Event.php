@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    protected $table = 'events';
+    protected $table = 'event';
     protected $fillable = ["plant_id", "tipe_event", "tgl_event", "lokasi", "keterangan"];
     public function plant()
     {

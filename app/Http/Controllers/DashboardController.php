@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Kategori;
+use App\Models\Plant;
+use App\Models\Event;
+
 class DashboardController extends Controller
 {
     /**
@@ -11,7 +15,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //
+        $totalKategori = Kategori::count();
+        $totalTanaman = Plant::count();
+        $totalEvent = Event::count();
+
+        return view('dashboard', compact('totalKategori', 'totalTanaman', 'totalEvent'));
     }
 
     /**

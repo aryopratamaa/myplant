@@ -1,8 +1,14 @@
 <aside class="left-sidebar">
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="{{ url('/') }}" class="text-nowrap logo-img">
-                <img src="{{ asset('seodash/src/assets/images/logos/logo-light.svg') }}" alt="Logo" />
+            <a href="{{ url('/') }}"
+                class="text-nowrap logo-img text-decoration-none d-flex align-items-center gap-2 mt-3 mb-3">
+                <div class="bg-primary text-white rounded-3 d-flex align-items-center justify-content-center"
+                    style="width: 35px; height: 35px;">
+                    <i class="ti ti-leaf fs-6"></i>
+                </div>
+                <span class="fw-bolder fs-6 text-dark" style="letter-spacing: 0.5px;">KebunKu<span
+                        class="text-primary">.</span></span>
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-8"></i>
@@ -27,7 +33,8 @@
                     <span class="hide-menu">MASTER MENU</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/kategori" aria-expanded="false">
+                    <a class="sidebar-link{{ request()->routeIs('kategori.*') ? ' active' : '' }}" href="/kategori"
+                        aria-expanded="false">
                         <span>
                             <iconify-icon icon="solar:layers-minimalistic-bold-duotone" class="fs-6"></iconify-icon>
                         </span>
@@ -35,7 +42,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/plant" aria-expanded="false">
+                    <a class="sidebar-link{{ request()->routeIs('plant.*') ? ' active' : '' }}" href="/plant"
+                        aria-expanded="false">
                         <span>
                             <iconify-icon icon="solar:danger-circle-bold-duotone" class="fs-6"></iconify-icon>
                         </span>
@@ -43,9 +51,11 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/event" aria-expanded="false">
+                    <a class="sidebar-link{{ request()->routeIs('event.*') ? ' active' : '' }}" href="/event"
+                        aria-expanded="false">
                         <span>
-                            <iconify-icon icon="solar:bookmark-square-minimalistic-bold-duotone" class="fs-6"></iconify-icon>
+                            <iconify-icon icon="solar:bookmark-square-minimalistic-bold-duotone"
+                                class="fs-6"></iconify-icon>
                         </span>
                         <span class="hide-menu">Event</span>
                     </a>
