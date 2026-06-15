@@ -35,11 +35,11 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/tanaman" aria-expanded="false">
+                    <a class="sidebar-link" href="/plant" aria-expanded="false">
                         <span>
                             <iconify-icon icon="solar:danger-circle-bold-duotone" class="fs-6"></iconify-icon>
                         </span>
-                        <span class="hide-menu">Tanaman</span>
+                        <span class="hide-menu">Plant</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -50,14 +50,7 @@
                         <span class="hide-menu">Event</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="/laporan" aria-expanded="false">
-                        <span>
-                            <iconify-icon icon="solar:file-text-bold-duotone" class="fs-6"></iconify-icon>
-                        </span>
-                        <span class="hide-menu">Laporan</span>
-                    </a>
-                </li>
+
 
             </ul>
 
