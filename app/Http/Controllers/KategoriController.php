@@ -33,7 +33,7 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            "nama" => "required|string|max:100",
+            "nama" => "required|string|min:5|max:100", 
             "deskripsi" => "nullable|string",
         ]);
 
@@ -64,7 +64,7 @@ class KategoriController extends Controller
     public function update(Request $request, Kategori $kategori)
     {
         $validatedData = $request->validate([
-            "nama" => "required|string|max:100",
+            "nama" => "required|string|min:5|max:100",
             "deskripsi" => "nullable|string",
         ]);
 
