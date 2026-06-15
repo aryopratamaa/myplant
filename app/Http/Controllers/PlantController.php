@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 // WAJIB DITAMBAHKAN: Memberi tahu Controller di mana letak Model & Storage
 use App\Models\Plant;
 use App\Models\Kategori;
-use Illuminate\Support\Facades\Storage; 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class PlantController extends Controller
@@ -46,8 +46,7 @@ class PlantController extends Controller
         ]);
 
         if ($request->hasFile('foto')) {
-            // Variabel disamakan menjadi $fotoPath
-            $fotoPath = $request->file('foto')->store('public/fotos');
+            $fotoPath = $request->file('foto')->store('fotos', 'public');
             $validatedData['foto'] = basename($fotoPath);
         }
 
@@ -93,11 +92,11 @@ class PlantController extends Controller
 
         if ($request->hasFile('foto')) {
             // Hapus foto lama jika ada
-            if ($plant->foto && Storage::exists('public/fotos/' . $plant->foto)) {
-                Storage::delete('public/fotos/' . $plant->foto);
+            if ($plant->foto && Storage::disk('public')->exists('fotos/' . $plant->foto)) {
+                Storage::disk('public')->delete('fotos/' . $plant->foto);
             }
             // Simpan foto baru
-            $fotoPath = $request->file('foto')->store('public/fotos');
+            $fotoPath = $request->file('foto')->store('fotos', 'public');
             $validatedData['foto'] = basename($fotoPath);
         }
 
@@ -112,10 +111,10 @@ class PlantController extends Controller
     public function destroy(string $id)
     {
         $plant = Plant::findOrFail($id);
-        
+
         // Hapus foto dari server sebelum datanya dihapus
-        if ($plant->foto && Storage::exists('public/fotos/' . $plant->foto)) {
-            Storage::delete('public/fotos/' . $plant->foto);
+        if ($plant->foto && Storage::disk('public')->exists('fotos/' . $plant->foto)) {
+            Storage::disk('public')->delete('fotos/' . $plant->foto);
         }
         $plant->delete();
 
