@@ -16,11 +16,12 @@ return new class extends Migration
             $table->foreignId('plant_id')
             ->references('id')
             ->on('plants')
-            ->onDelete('cascade');
+            ->cascadeOnUpdate()
+            ->restrictOnDelete();
             $table->enum('tipe_event', ['O', 'I'])->default('I');
             $table->date('tgl_event');
-            $table->string('lokasi');
-            $table->text('keterangan');
+            $table->string('lokasi', 100)->nullable();
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }

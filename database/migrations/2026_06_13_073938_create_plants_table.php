@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kategori_id')
             ->constrained('kategori')
-            ->cascadeOnDelete()
-            ->cascadeOnUpdate();
-            $table->string('nama_tanaman');
+            ->cascadeOnUpdate()
+            ->restrictOnDelete();
+            $table->string('nama_tanaman', 150);
             $table->date('tgl_tanam');
-            $table->string('lokasi');
+            $table->string('lokasi', 100);
             $table->enum('kondisi', ['Sehat', 'Kurang Sehat', 'Sakit'])->default('Sehat');
-            $table->string('foto');
-            $table->text('catatan');
+            $table->string('foto', 255)->nullable();
+            $table->text('catatan')->nullable();
             $table->timestamps();
         });
     }
