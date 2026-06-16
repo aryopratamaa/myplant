@@ -14,7 +14,9 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategoris = Kategori::all();
+        // $kategoris = Kategori::all();
+        // PERBAIKAN: Mengganti all() menjadi latest()->paginate(5)
+        $kategoris = Kategori::latest()->paginate(5);
 
         return view("kategori.index", compact("kategoris"));
     }

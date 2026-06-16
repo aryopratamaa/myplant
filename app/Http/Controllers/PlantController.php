@@ -60,7 +60,8 @@ class PlantController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $plant = Plant::with('kategori')->findOrFail($id);
+        return view('plant.show', compact('plant'));
     }
 
     /**

@@ -16,7 +16,7 @@ class EventController extends Controller
     {
         // Mengambil data event beserta relasi tanamannya, diurutkan dari yang terbaru
         // $events = Event::with('plant')->latest()->get();
-        
+
         // PERBAIKAN: Mengganti get() menjadi paginate(5)
         $events = Event::with('plant')->latest()->paginate(5);
         return view('event.index', compact('events'));
@@ -57,7 +57,8 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $event = Event::with('plant')->findOrFail($id);
+        return view('event.show', compact('event'));
     }
 
     /**

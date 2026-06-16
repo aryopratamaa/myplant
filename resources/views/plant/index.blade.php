@@ -28,7 +28,7 @@
                         <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Detail Tanaman</h6></th>
                         <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Kategori</h6></th>
                         <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Status</h6></th>
-                        <th class="border-bottom-0 rounded-end text-center" width="15%"><h6 class="fw-semibold mb-0">Aksi</h6></th>
+                        <th class="border-bottom-0 rounded-end text-center" width="20%"><h6 class="fw-semibold mb-0">Aksi</h6></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,7 +46,7 @@
                         </td>
                         <td class="border-bottom-0">
                             <h6 class="fw-semibold mb-1 text-dark">{{ $plant->nama_tanaman }}</h6>
-                            <span class="text-muted fs-3">Ditanam: {{ \Carbon\Carbon::parse($plant->tgl_tanam)->format('d M Y') }} | Lokasi: {{ $plant->lokasi }}</span>
+                            <span class="text-muted fs-3">Ditanam: {{ \Carbon\Carbon::parse($plant->tgl_tanam)->format('d M Y') }}</span>
                         </td>
                         <td class="border-bottom-0">
                             <span class="badge bg-primary-subtle text-primary rounded-pill px-3">{{ $plant->kategori->nama ?? '-' }}</span>
@@ -58,6 +58,9 @@
                             <span class="badge bg-{{ $badgeColor }} rounded-pill">{{ $plant->kondisi }}</span>
                         </td>
                         <td class="border-bottom-0 text-center">
+                            <a href="{{ route('plant.show', $plant->id) }}" class="btn btn-sm btn-outline-primary rounded-circle p-2 me-1" title="Lihat Detail">
+                                <i class="ti ti-eye fs-4"></i>
+                            </a>
                             <a href="{{ route('plant.edit', $plant->id) }}" class="btn btn-sm btn-outline-info rounded-circle p-2 me-1" title="Edit Data">
                                 <i class="ti ti-pencil fs-4"></i>
                             </a>
@@ -100,21 +103,8 @@
 
 <style>
     .pagination { margin-bottom: 0; }
-    .page-item.active .page-link {
-        background-color: var(--bs-primary);
-        border-color: var(--bs-primary);
-        border-radius: 8px;
-    }
-    .page-link {
-        color: var(--bs-dark);
-        border: none;
-        border-radius: 8px;
-        margin: 0 2px;
-        padding: 0.375rem 0.75rem;
-    }
-    .page-link:hover {
-        background-color: var(--bs-light);
-        color: var(--bs-primary);
-    }
+    .page-item.active .page-link { background-color: var(--bs-primary); border-color: var(--bs-primary); border-radius: 8px; }
+    .page-link { color: var(--bs-dark); border: none; border-radius: 8px; margin: 0 2px; padding: 0.375rem 0.75rem; }
+    .page-link:hover { background-color: var(--bs-light); color: var(--bs-primary); }
 </style>
 @endsection

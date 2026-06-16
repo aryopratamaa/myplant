@@ -30,37 +30,31 @@
                     <table class="table table-hover align-middle border-bottom mb-0">
                         <thead class="text-dark fs-4 bg-light">
                             <tr>
-                                <th class="border-bottom-0 rounded-start text-center" width="5%">
-                                    <h6 class="fw-semibold mb-0">No</h6>
-                                </th>
-                                <th class="border-bottom-0" width="25%">
-                                    <h6 class="fw-semibold mb-0">Nama Kategori</h6>
-                                </th>
-                                <th class="border-bottom-0" width="55%">
-                                    <h6 class="fw-semibold mb-0">Deskripsi</h6>
-                                </th>
-                                <th class="border-bottom-0 rounded-end text-center" width="15%">
-                                    <h6 class="fw-semibold mb-0">Aksi</h6>
-                                </th>
+                                <th class="border-bottom-0 rounded-start text-center" width="5%"><h6 class="fw-semibold mb-0">No</h6></th>
+                                <th class="border-bottom-0" width="25%"><h6 class="fw-semibold mb-0">Nama Kategori</h6></th>
+                                <th class="border-bottom-0" width="45%"><h6 class="fw-semibold mb-0">Deskripsi (Ringkasan)</h6></th>
+                                <th class="border-bottom-0 rounded-end text-center" width="25%"><h6 class="fw-semibold mb-0">Aksi</h6></th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($kategoris as $index => $kategori)
                             <tr>
                                 <td class="border-bottom-0 text-center">
-                                    <h6 class="fw-semibold mb-0">{{ $index + 1 }}</h6>
+                                    <h6 class="fw-semibold mb-0">{{ $kategoris->firstItem() + $index }}</h6>
                                 </td>
                                 <td class="border-bottom-0">
                                     <h6 class="fw-semibold mb-1 text-dark">{{ $kategori->nama }}</h6>
                                 </td>
                                 <td class="border-bottom-0 text-wrap">
-                                    <span class="text-muted fs-3" style="line-height: 1.5;">{{ $kategori->deskripsi ?? 'Tidak ada deskripsi' }}</span>
+                                    <span class="text-muted fs-3" style="line-height: 1.5;">{{ \Illuminate\Support\Str::limit($kategori->deskripsi ?? 'Tidak ada deskripsi', 60) }}</span>
                                 </td>
                                 <td class="border-bottom-0 text-center">
+                                    <a href="{{ route('kategori.show', $kategori->id) }}" class="btn btn-sm btn-outline-primary rounded-circle p-2 me-1" title="Lihat Detail">
+                                        <i class="ti ti-eye fs-4"></i>
+                                    </a>
                                     <a href="{{ route('kategori.edit', $kategori->id) }}" class="btn btn-sm btn-outline-info rounded-circle p-2 me-1" title="Edit Data">
                                         <i class="ti ti-pencil fs-4"></i>
                                     </a>
-                                    
                                     <form action="{{ route('kategori.destroy', $kategori->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
                                         @csrf
                                         @method('DELETE')
@@ -84,8 +78,34 @@
                     </table>
                 </div>
                 
+                @if($kategoris->hasPages())
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-4 pt-3 border-top">
+                    <div class="text-muted fs-3 mb-3 mb-md-0">
+                        Menampilkan data <span class="fw-semibold text-dark">{{ $kategoris->firstItem() }}</span> 
+                        sampai <span class="fw-semibold text-dark">{{ $kategoris->lastItem() }}</span> 
+                        dari total <span class="fw-semibold text-dark">{{ $kategoris->total() }}</span> kategori
+                    </div>
+                    <div class="pagination-wrapper">
+                        {{ $kategoris->links() }}
+                    </div>
+                </div>
+                @endif
+
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .pagination { margin-bottom: 0; }
+    .page-item.active .page-link {
+        background-color: var(--bs-primary); border-color: var(--bs-primary); border-radius: 8px;
+    }
+    .page-link {
+        color: var(--bs-dark); border: none; border-radius: 8px; margin: 0 2px; padding: 0.375rem 0.75rem;
+    }
+    .page-link:hover {
+        background-color: var(--bs-light); color: var(--bs-primary);
+    }
+</style>
 @endsection

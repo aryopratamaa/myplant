@@ -33,8 +33,8 @@
                                 <th class="border-bottom-0 rounded-start text-center" width="5%"><h6 class="fw-semibold mb-0">No</h6></th>
                                 <th class="border-bottom-0" width="25%"><h6 class="fw-semibold mb-0">Target Tanaman</h6></th>
                                 <th class="border-bottom-0" width="20%"><h6 class="fw-semibold mb-0">Pelaksanaan</h6></th>
-                                <th class="border-bottom-0" width="35%"><h6 class="fw-semibold mb-0">Keterangan Kegiatan</h6></th>
-                                <th class="border-bottom-0 rounded-end text-center" width="15%"><h6 class="fw-semibold mb-0">Aksi</h6></th>
+                                <th class="border-bottom-0" width="30%"><h6 class="fw-semibold mb-0">Keterangan (Ringkasan)</h6></th>
+                                <th class="border-bottom-0 rounded-end text-center" width="20%"><h6 class="fw-semibold mb-0">Aksi</h6></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,12 +53,14 @@
                                 </td>
                                 <td class="border-bottom-0">
                                     <span class="d-block text-dark fw-semibold mb-1"><i class="ti ti-calendar me-1"></i> {{ \Carbon\Carbon::parse($event->tgl_event)->format('d M Y') }}</span>
-                                    <span class="text-muted fs-3"><i class="ti ti-map-pin me-1"></i> {{ $event->lokasi ?? 'Lokasi belum diatur' }}</span>
                                 </td>
                                 <td class="border-bottom-0 text-wrap">
-                                    <span class="text-muted fs-3" style="line-height: 1.5;">{{ $event->keterangan ?? 'Tidak ada keterangan' }}</span>
+                                    <span class="text-muted fs-3" style="line-height: 1.5;">{{ \Illuminate\Support\Str::limit($event->keterangan ?? 'Tidak ada keterangan', 50) }}</span>
                                 </td>
                                 <td class="border-bottom-0 text-center">
+                                    <a href="{{ route('event.show', $event->id) }}" class="btn btn-sm btn-outline-primary rounded-circle p-2 me-1" title="Lihat Detail">
+                                        <i class="ti ti-eye fs-4"></i>
+                                    </a>
                                     <a href="{{ route('event.edit', $event->id) }}" class="btn btn-sm btn-outline-info rounded-circle p-2 me-1" title="Edit Jadwal">
                                         <i class="ti ti-pencil fs-4"></i>
                                     </a>
@@ -105,22 +107,8 @@
 
 <style>
     .pagination { margin-bottom: 0; }
-    .page-item.active .page-link {
-        background-color: var(--bs-warning);
-        border-color: var(--bs-warning);
-        color: var(--bs-dark);
-        border-radius: 8px;
-    }
-    .page-link {
-        color: var(--bs-dark);
-        border: none;
-        border-radius: 8px;
-        margin: 0 2px;
-        padding: 0.375rem 0.75rem;
-    }
-    .page-link:hover {
-        background-color: var(--bs-light);
-        color: var(--bs-warning);
-    }
+    .page-item.active .page-link { background-color: var(--bs-warning); border-color: var(--bs-warning); color: var(--bs-dark); border-radius: 8px; }
+    .page-link { color: var(--bs-dark); border: none; border-radius: 8px; margin: 0 2px; padding: 0.375rem 0.75rem; }
+    .page-link:hover { background-color: var(--bs-light); color: var(--bs-warning); }
 </style>
 @endsection
