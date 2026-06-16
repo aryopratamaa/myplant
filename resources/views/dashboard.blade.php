@@ -88,7 +88,7 @@
                 </div>
                 <h6 class="fw-bold text-dark mb-1">Pusat Laporan</h6>
                 <p class="text-muted fs-2 mb-3">Unduh rekapitulasi sistem</p>
-                <a href="#" class="btn btn-info text-white btn-sm rounded-pill w-100 fw-semibold">Buka Modul</a>
+                <a href="{{ route('laporan.index') }}" class="btn btn-info text-white btn-sm rounded-pill w-100 fw-semibold">Buka Modul</a>
             </div>
         </div>
     </div>
