@@ -37,9 +37,9 @@
                         <td class="border-bottom-0"><h6 class="fw-semibold mb-0">{{ $index + 1 }}</h6></td>
                         <td class="border-bottom-0">
                             @if($plant->foto)
-                                <img src="{{ asset('storage/fotos/' . $plant->foto) }}" alt="Foto" class="rounded-3" style="width: 50px; height: 50px; object-fit: cover;">
+                                <img src="{{ asset('storage/fotos/' . $plant->foto) }}" alt="Foto" class="rounded-3 shadow-sm" style="width: 55px; height: 55px; object-fit: cover;">
                             @else
-                                <div class="bg-light rounded-3 d-flex align-items-center justify-content-center text-muted" style="width: 50px; height: 50px;">
+                                <div class="bg-light rounded-3 d-flex align-items-center justify-content-center text-muted border" style="width: 55px; height: 55px;">
                                     <i class="ti ti-photo-off fs-5"></i>
                                 </div>
                             @endif
@@ -49,7 +49,7 @@
                             <span class="text-muted fs-3">Ditanam: {{ \Carbon\Carbon::parse($plant->tgl_tanam)->format('d M Y') }} | Lokasi: {{ $plant->lokasi }}</span>
                         </td>
                         <td class="border-bottom-0">
-                            <span class="badge bg-primary-subtle text-primary rounded-pill px-3">{{ $plant->kategori->nama ?? 'Tanpa Kategori' }}</span>
+                            <span class="badge bg-primary-subtle text-primary rounded-pill px-3">{{ $plant->kategori->nama ?? '-' }}</span>
                         </td>
                         <td class="border-bottom-0">
                             @php
