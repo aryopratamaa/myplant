@@ -55,7 +55,7 @@
                 <div class="text-center border-bottom border-dark mb-4 pb-3" style="border-bottom-width: 3px !important;">
                     <h3 class="fw-bold mb-1 text-uppercase text-dark" style="letter-spacing: 1px;">SMK Negeri 1 Air Putih</h3>
                     <h5 class="fw-bold mb-2 text-dark">PROGRAM KEAHLIAN REKAYASA PERANGKAT LUNAK</h5>
-                    <p class="mb-0 text-dark" style="font-size: 14px;">Sistem Informasi Manajemen Inventaris Botani & Penjadwalan</p>
+                    <p class="mb-0 text-dark" style="font-size: 14px;">Sistem Informasi Manajemen Inventaris KebunKu & Penjadwalan</p>
                 </div>
 
                 <div class="text-center mb-4">
@@ -127,13 +127,13 @@
                     </table>
                 @endif
 
-                <div class="row mt-5 pt-4 text-dark">
+                <div class="row mt-1 pt-4 text-dark">
                     <div class="col-8"></div>
-                    <div class="col-4 text-center">
+                    <div class="col-4 text-left">
                         <p class="mb-5">Air Putih, {{ \Carbon\Carbon::now()->format('d F Y') }}<br>Penanggung Jawab,</p>
                         <br><br>
-                        <p class="fw-bold mb-0 text-decoration-underline">_______________________</p>
-                        <p>NIP. ....................................</p>
+                        <p class="fw-bold mb-0 text-decoration-underline">ARYO PRATAMA, S.Kom</p>
+                        <p>NIP. ................................................</p>
                     </div>
                 </div>
 
