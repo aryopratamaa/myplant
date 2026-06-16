@@ -34,10 +34,10 @@
                 <tbody>
                     @forelse ($plants as $index => $plant)
                     <tr>
-                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">{{ $index + 1 }}</h6></td>
+                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">{{ $plants->firstItem() + $index }}</h6></td>
                         <td class="border-bottom-0">
                             @if($plant->foto)
-                                <img src="{{ asset('storage/fotos/' . $plant->foto) }}" alt="Foto" class="rounded-3 shadow-sm" style="width: 55px; height: 55px; object-fit: cover;">
+                                <img src="{{ asset('storage/fotos/' . $plant->foto) }}" alt="Foto" class="rounded-3 shadow-sm border" style="width: 55px; height: 55px; object-fit: cover;">
                             @else
                                 <div class="bg-light rounded-3 d-flex align-items-center justify-content-center text-muted border" style="width: 55px; height: 55px;">
                                     <i class="ti ti-photo-off fs-5"></i>
@@ -81,6 +81,40 @@
                 </tbody>
             </table>
         </div>
+
+        @if($plants->hasPages())
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-4 pt-3 border-top">
+            <div class="text-muted fs-3 mb-3 mb-md-0">
+                Menampilkan data <span class="fw-semibold text-dark">{{ $plants->firstItem() }}</span> 
+                sampai <span class="fw-semibold text-dark">{{ $plants->lastItem() }}</span> 
+                dari total <span class="fw-semibold text-dark">{{ $plants->total() }}</span> tanaman
+            </div>
+            <div class="pagination-wrapper">
+                {{ $plants->links() }}
+            </div>
+        </div>
+        @endif
+
     </div>
 </div>
+
+<style>
+    .pagination { margin-bottom: 0; }
+    .page-item.active .page-link {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        border-radius: 8px;
+    }
+    .page-link {
+        color: var(--bs-dark);
+        border: none;
+        border-radius: 8px;
+        margin: 0 2px;
+        padding: 0.375rem 0.75rem;
+    }
+    .page-link:hover {
+        background-color: var(--bs-light);
+        color: var(--bs-primary);
+    }
+</style>
 @endsection

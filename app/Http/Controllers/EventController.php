@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
+use App\Models\Plant;
+
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -11,7 +14,12 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        // Mengambil data event beserta relasi tanamannya, diurutkan dari yang terbaru
+        // $events = Event::with('plant')->latest()->get();
+        
+        // PERBAIKAN: Mengganti get() menjadi paginate(5)
+        $events = Event::with('plant')->latest()->paginate(5);
+        return view('event.index', compact('events'));
     }
 
     /**
@@ -19,7 +27,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        // Mengambil semua data tanaman untuk ditampilkan di dropdown form
+        $plants = Plant::orderBy('nama_tanaman')->get();
+        return view('event.create', compact('plants'));
     }
 
     /**
@@ -27,7 +37,19 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validasi inputan
+        $validatedData = $request->validate([
+            'plant_id' => 'required|exists:plants,id',
+            'tipe_event' => 'required|in:O,I',
+            'tgl_event' => 'required|date',
+            'lokasi' => 'nullable|string|max:100',
+            'keterangan' => 'nullable|string',
+        ]);
+
+        // Simpan ke database
+        Event::create($validatedData);
+
+        return redirect()->route('event.index')->with('success', 'Jadwal event berhasil ditambahkan!');
     }
 
     /**
@@ -43,7 +65,10 @@ class EventController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $event = Event::findOrFail($id);
+        $plants = Plant::orderBy('nama_tanaman')->get();
+
+        return view('event.edit', compact('event', 'plants'));
     }
 
     /**
@@ -51,7 +76,18 @@ class EventController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'plant_id' => 'required|exists:plants,id',
+            'tipe_event' => 'required|in:O,I',
+            'tgl_event' => 'required|date',
+            'lokasi' => 'nullable|string|max:100',
+            'keterangan' => 'nullable|string',
+        ]);
+
+        $event = Event::findOrFail($id);
+        $event->update($validatedData);
+
+        return redirect()->route('event.index')->with('success', 'Jadwal event berhasil diperbarui!');
     }
 
     /**
@@ -59,6 +95,9 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $event = Event::findOrFail($id);
+        $event->delete();
+
+        return redirect()->route('event.index')->with('success', 'Jadwal event berhasil dihapus!');
     }
 }

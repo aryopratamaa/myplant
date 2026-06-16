@@ -15,8 +15,9 @@ class PlantController extends Controller
      */
     public function index()
     {
-        // Variabel diubah menjadi $plants (jamak) agar cocok dengan view index.blade.php
-        $plants = Plant::with('kategori')->latest()->get();
+        // PERBAIKAN: Mengganti get() menjadi paginate(5) untuk membatasi 5 data per halaman
+        $plants = Plant::with('kategori')->latest()->paginate(5);
+        
         return view('plant.index', compact('plants'));
     }
 
@@ -25,7 +26,6 @@ class PlantController extends Controller
      */
     public function create()
     {
-        // Typo diperbaiki: Kategori::all(), bukan Kategoris::all()
         $kategoris = Kategori::all();
         return view('plant.create', compact('kategoris'));
     }
