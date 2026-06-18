@@ -61,6 +61,15 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item">
+                    <a class="sidebar-link{{ request()->routeIs('laporan.*') ? ' active' : '' }}" href="/laporan"
+                        aria-expanded="false">
+                        <span>
+                            <iconify-icon icon="solar:document-bold-duotone" class="fs-6"></iconify-icon>
+                        </span>
+                        <span class="hide-menu">Laporan</span>
+                    </a>
+
 
             </ul>
 

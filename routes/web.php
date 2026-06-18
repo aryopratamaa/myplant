@@ -9,6 +9,7 @@ use App\Http\Controllers\LaporanController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+Route::get('/laporan/cetak', [LaporanController::class, 'cetak'])->name('laporan.cetak');
 
 Route::resource('kategori', KategoriController::class);
 Route::resource('plant', PlantController::class);
