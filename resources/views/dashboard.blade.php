@@ -24,8 +24,8 @@
     <div class="col-sm-6 col-xl-3">
         <div class="card h-100 shadow-sm border-0 rounded-4 hover-card">
             <div class="card-body p-4 d-flex align-items-center gap-3">
-                <div class="icon-box bg-label-primary">
-                    <iconify-icon icon="solar:layers-minimalistic-bold-duotone" class="text-primary" style="font-size: 2.5rem;"></iconify-icon>
+                <div class="icon-box bg-primary bg-opacity-10 text-primary">
+                    <iconify-icon icon="solar:layers-minimalistic-bold-duotone" style="font-size: 2.5rem;"></iconify-icon>
                 </div>
                 <div>
                     <p class="mb-1 text-muted fw-bold text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.5px;">Total Kategori</p>
@@ -38,8 +38,8 @@
     <div class="col-sm-6 col-xl-3">
         <div class="card h-100 shadow-sm border-0 rounded-4 hover-card">
             <div class="card-body p-4 d-flex align-items-center gap-3">
-                <div class="icon-box bg-label-success">
-                    <iconify-icon icon="solar:sticker-smile-circle-2-bold-duotone" class="text-success" style="font-size: 2.5rem;"></iconify-icon>
+                <div class="icon-box bg-success bg-opacity-10 text-success">
+                    <iconify-icon icon="solar:sticker-smile-circle-2-bold-duotone" style="font-size: 2.5rem;"></iconify-icon>
                 </div>
                 <div>
                     <p class="mb-1 text-muted fw-bold text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.5px;">Total Tanaman</p>
@@ -52,8 +52,8 @@
     <div class="col-sm-6 col-xl-3">
         <div class="card h-100 shadow-sm border-0 rounded-4 hover-card">
             <div class="card-body p-4 d-flex align-items-center gap-3">
-                <div class="icon-box bg-label-info">
-                    <iconify-icon icon="solar:bookmark-square-minimalistic-bold-duotone" class="text-info" style="font-size: 2.5rem;"></iconify-icon>
+                <div class="icon-box bg-info bg-opacity-10 text-info">
+                    <iconify-icon icon="solar:bookmark-square-minimalistic-bold-duotone" style="font-size: 2.5rem;"></iconify-icon>
                 </div>
                 <div>
                     <p class="mb-1 text-muted fw-bold text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.5px;">Total Event</p>
@@ -66,8 +66,8 @@
     <div class="col-sm-6 col-xl-3">
         <div class="card h-100 shadow-sm border-0 rounded-4 hover-card">
             <div class="card-body p-4 d-flex align-items-center gap-3">
-                <div class="icon-box bg-label-danger">
-                    <iconify-icon icon="solar:danger-triangle-bold-duotone" class="text-danger" style="font-size: 2.5rem;"></iconify-icon>
+                <div class="icon-box bg-danger bg-opacity-10 text-danger">
+                    <iconify-icon icon="solar:danger-triangle-bold-duotone" style="font-size: 2.5rem;"></iconify-icon>
                 </div>
                 <div>
                     <p class="mb-1 text-muted fw-bold text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.5px;">Perlu Perhatian</p>
@@ -185,7 +185,7 @@
                                 <td class="py-3 px-4 fw-bold text-dark">{{ $plant->nama_tanaman }}</td>
                                 <td class="py-3 px-3 text-muted">{{ $plant->kategori->nama ?? '-' }}</td>
                                 <td class="py-3 px-4 text-center">
-                                    <span class="badge {{ $plant->kondisi === 'Sakit' ? 'bg-label-danger' : 'bg-label-warning' }} rounded-pill px-3 py-1 fw-bold">
+                                    <span class="badge {{ $plant->kondisi === 'Sakit' ? 'bg-danger text-white' : 'bg-warning text-dark' }} rounded-pill px-3 py-2 fw-bold shadow-sm">
                                         {{ $plant->kondisi }}
                                     </span>
                                 </td>
@@ -229,11 +229,9 @@
                                     <i class="bx bx-calendar text-muted me-1"></i> {{ \Carbon\Carbon::parse($event->tgl_event)->format('d/m/Y') }}
                                 </td>
                                 <td class="py-3 px-3">
-                                    @if($event->tipe_event === 'I')
-                                        <span class="badge bg-label-info rounded-pill px-3 py-1 fw-bold">Indoor</span>
-                                    @else
-                                        <span class="badge bg-label-secondary rounded-pill px-3 py-1 fw-bold">Outdoor</span>
-                                    @endif
+                                    <span class="badge bg-primary text-white rounded-pill px-3 py-2 fw-bold shadow-sm">
+                                        {{ $event->tipe_event }}
+                                    </span>
                                 </td>
                                 <td class="py-3 px-4 text-dark">{{ $event->plant->nama_tanaman ?? '-' }}</td>
                             </tr>
