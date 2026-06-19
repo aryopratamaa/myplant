@@ -69,6 +69,7 @@
                         </span>
                         <span class="hide-menu">Laporan</span>
                     </a>
+                </li>
 
 
             </ul>
