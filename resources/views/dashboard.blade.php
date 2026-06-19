@@ -184,10 +184,8 @@
                             <tr>
                                 <td class="py-3 px-4 fw-bold text-dark">{{ $plant->nama_tanaman }}</td>
                                 <td class="py-3 px-3 text-muted">{{ $plant->kategori->nama ?? '-' }}</td>
-                                <td class="py-3 px-4 text-center">
-                                    <span class="badge {{ $plant->kondisi === 'Sakit' ? 'bg-danger text-white' : 'bg-warning text-dark' }} rounded-pill px-3 py-2 fw-bold shadow-sm">
-                                        {{ $plant->kondisi }}
-                                    </span>
+                                <td class="py-3 px-4 text-center fw-bold {{ $plant->kondisi === 'Sakit' ? 'text-danger' : 'text-warning' }}">
+                                    {{ $plant->kondisi }}
                                 </td>
                             </tr>
                             @empty
@@ -228,10 +226,8 @@
                                 <td class="py-3 px-4 text-dark fw-medium">
                                     <i class="bx bx-calendar text-muted me-1"></i> {{ \Carbon\Carbon::parse($event->tgl_event)->format('d/m/Y') }}
                                 </td>
-                                <td class="py-3 px-3">
-                                    <span class="badge bg-primary text-white rounded-pill px-3 py-2 fw-bold shadow-sm">
-                                        {{ $event->tipe_event }}
-                                    </span>
+                                <td class="py-3 px-3 fw-bold text-primary">
+                                    {{ $event->tipe_event === 'I' ? 'Indoor' : 'Outdoor' }}
                                 </td>
                                 <td class="py-3 px-4 text-dark">{{ $event->plant->nama_tanaman ?? '-' }}</td>
                             </tr>
