@@ -1,113 +1,241 @@
 @extends('layouts.master')
-@section('title', 'Dashboard Utama')
+@section('title', 'Dashboard')
 
 @section('content')
-<div class="row mb-4">
-    <div class="col-12">
-        <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-primary-subtle relative">
-            <div class="card-body p-4 p-md-5 position-relative z-1">
-                <div class="row align-items-center">
-                    <div class="col-md-8">
-                        <h3 class="fw-bolder text-primary mb-2">Selamat Datang di Sistem Manajemen Botani! 🌿</h3>
-                        <p class="text-dark fs-4 mb-0 opacity-75">
-                            Pantau inventaris tanaman, kelola klasifikasi, dan jadwalkan kegiatan harian Anda dengan mudah melalui panel metrik di bawah ini.
-                        </p>
-                    </div>
+<div class="row">
+    <div class="col-sm-6 col-xl-3 mb-4">
+        <div class="card h-100 shadow-sm border-0 rounded-4">
+            <div class="card-body d-flex align-items-center gap-3 p-4">
+                <iconify-icon icon="solar:layers-minimalistic-bold-duotone" class="text-primary" style="font-size: 3.5rem;"></iconify-icon>
+                <div>
+                    <p class="mb-1 text-muted fw-semibold text-uppercase" style="font-size: 0.8rem; letter-spacing: 0.5px;">Total Kategori</p>
+                    <h4 class="fw-bold mb-0 text-dark">{{ $totalKategori }}</h4>
                 </div>
             </div>
-            <div class="position-absolute top-0 end-0 opacity-25" style="transform: translate(20%, -20%);">
-                <i class="ti ti-leaf text-primary" style="font-size: 15rem;"></i>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3 mb-4">
+        <div class="card h-100 shadow-sm border-0 rounded-4">
+            <div class="card-body d-flex align-items-center gap-3 p-4">
+                <iconify-icon icon="solar:sticker-smile-circle-2-bold-duotone" class="text-success" style="font-size: 3.5rem;"></iconify-icon>
+                <div>
+                    <p class="mb-1 text-muted fw-semibold text-uppercase" style="font-size: 0.8rem; letter-spacing: 0.5px;">Total Tanaman</p>
+                    <h4 class="fw-bold mb-0 text-dark">{{ $totalPlant }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3 mb-4">
+        <div class="card h-100 shadow-sm border-0 rounded-4">
+            <div class="card-body d-flex align-items-center gap-3 p-4">
+                <iconify-icon icon="solar:bookmark-square-minimalistic-bold-duotone" class="text-info" style="font-size: 3.5rem;"></iconify-icon>
+                <div>
+                    <p class="mb-1 text-muted fw-semibold text-uppercase" style="font-size: 0.8rem; letter-spacing: 0.5px;">Total Event</p>
+                    <h4 class="fw-bold mb-0 text-dark">{{ $totalEvent }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3 mb-4">
+        <div class="card h-100 shadow-sm border-0 rounded-4">
+            <div class="card-body d-flex align-items-center gap-3 p-4">
+                <iconify-icon icon="solar:danger-triangle-bold-duotone" class="text-danger" style="font-size: 3.5rem;"></iconify-icon>
+                <div>
+                    <p class="mb-1 text-muted fw-semibold text-uppercase" style="font-size: 0.8rem; letter-spacing: 0.5px;">Perlu Perhatian</p>
+                    <h4 class="fw-bold mb-0 text-dark">{{ $totalPerluPerhatian }}</h4>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-6 col-lg-3 mb-4 d-flex align-items-stretch">
-        <div class="card border-0 shadow-sm rounded-4 w-100 modern-stat-card">
-            <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                    <div>
-                        <p class="text-muted fw-semibold mb-1 text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Total Kategori</p>
-                        <h2 class="fw-bolder text-dark mb-0">{{ $totalKategori ?? 0 }}</h2>
-                    </div>
-                    <div class="bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center stat-icon-box" style="width: 55px; height: 55px;">
-                        <i class="ti ti-category fs-7"></i>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <a href="{{ route('kategori.index') }}" class="btn btn-outline-primary btn-sm rounded-pill w-100 fw-semibold fw-bold">Kelola Kategori <i class="ti ti-arrow-right ms-1"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6 col-lg-3 mb-4 d-flex align-items-stretch">
-        <div class="card border-0 shadow-sm rounded-4 w-100 modern-stat-card">
-            <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                    <div>
-                        <p class="text-muted fw-semibold mb-1 text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Inventaris Tanaman</p>
-                        <h2 class="fw-bolder text-dark mb-0">{{ $totalTanaman ?? 0 }}</h2>
-                    </div>
-                    <div class="bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center stat-icon-box" style="width: 55px; height: 55px;">
-                        <i class="ti ti-leaf fs-7"></i>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <a href="{{ route('plant.index') }}" class="btn btn-outline-success btn-sm rounded-pill w-100 fw-semibold fw-bold">Cek Tanaman <i class="ti ti-arrow-right ms-1"></i></a>
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm border-0 rounded-4">
+            <div class="card-body p-4 p-md-5">
+                <h5 class="card-title fw-bold mb-4 text-dark">Distribusi Tanaman per Kategori</h5>
+                <canvas id="chartKategori" height="220"></canvas>
+                <div class="table-responsive mt-4 border rounded-3">
+                    <table class="table table-hover table-sm align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="py-3 px-3">Kategori</th>
+                                <th class="py-3 px-3 text-end">Jumlah Tanaman</th>
+                            </tr>
+                        </thead>
+                        <tbody class="border-top-0">
+                            @forelse ($tanamanPerKategori as $kategori)
+                            <tr>
+                                <td class="py-2 px-3 fw-medium text-dark">{{ $kategori->nama }}</td>
+                                <td class="py-2 px-3 text-end fw-bold text-primary">{{ $kategori->plants_count }}</td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="2" class="text-center text-muted py-4">Belum ada data kategori.</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-md-6 col-lg-3 mb-4 d-flex align-items-stretch">
-        <div class="card border-0 shadow-sm rounded-4 w-100 modern-stat-card">
-            <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                    <div>
-                        <p class="text-muted fw-semibold mb-1 text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Jadwal Event</p>
-                        <h2 class="fw-bolder text-dark mb-0">{{ $totalEvent ?? 0 }}</h2>
-                    </div>
-                    <div class="bg-warning-subtle text-warning rounded-circle d-flex align-items-center justify-content-center stat-icon-box" style="width: 55px; height: 55px;">
-                        <i class="ti ti-calendar-event fs-7"></i>
-                    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm border-0 rounded-4">
+            <div class="card-body p-4 p-md-5">
+                <h5 class="card-title fw-bold mb-4 text-dark">Distribusi Kondisi Tanaman</h5>
+                <canvas id="chartKondisi" height="220"></canvas>
+                <div class="table-responsive mt-4 border rounded-3">
+                    <table class="table table-hover table-sm align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="py-3 px-3">Kondisi</th>
+                                <th class="py-3 px-3 text-end">Jumlah Tanaman</th>
+                            </tr>
+                        </thead>
+                        <tbody class="border-top-0">
+                            @foreach ($tanamanPerKondisi as $kondisi => $jumlah)
+                            <tr>
+                                <td class="py-2 px-3 fw-medium text-dark">{{ $kondisi }}</td>
+                                <td class="py-2 px-3 text-end fw-bold text-primary">{{ $jumlah }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-                <div class="mt-4">
-                    <a href="{{ route('event.index') }}" class="btn btn-outline-warning btn-sm rounded-pill w-100 fw-semibold fw-bold">Lihat Agenda <i class="ti ti-arrow-right ms-1"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6 col-lg-3 mb-4 d-flex align-items-stretch">
-        <div class="card border-0 shadow-sm rounded-4 w-100 modern-stat-card border-info border-bottom border-3">
-            <div class="card-body p-4 d-flex flex-column justify-content-center text-center">
-                <div class="bg-info-subtle text-info rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
-                    <i class="ti ti-file-analytics fs-7"></i>
-                </div>
-                <h6 class="fw-bold text-dark mb-1">Pusat Laporan</h6>
-                <p class="text-muted fs-2 mb-3">Unduh rekapitulasi sistem</p>
-                <a href="{{ route('laporan.index') }}" class="btn btn-info text-white btn-sm rounded-pill w-100 fw-semibold">Buka Modul</a>
             </div>
         </div>
     </div>
 </div>
 
-<style>
-    .modern-stat-card {
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        overflow: hidden;
-    }
-    .modern-stat-card:hover {
-        transform: translateY(-7px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.08) !important;
-    }
-    .stat-icon-box {
-        transition: transform 0.3s ease;
-    }
-    .modern-stat-card:hover .stat-icon-box {
-        transform: scale(1.1) rotate(5deg);
-    }
-</style>
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm border-0 rounded-4">
+            <div class="card-body p-4 p-md-5">
+                <h5 class="card-title fw-bold mb-4 text-dark">Tanaman Perlu Perhatian</h5>
+                <div class="table-responsive border rounded-3">
+                    <table class="table table-hover table-sm align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="py-3 px-3">Nama Tanaman</th>
+                                <th class="py-3 px-2">Kategori</th>
+                                <th class="py-3 px-2 text-center">Kondisi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="border-top-0">
+                            @forelse ($tanamanPerluPerhatian as $plant)
+                            <tr>
+                                <td class="py-2 px-3 fw-bold text-dark">{{ $plant->nama_tanaman }}</td>
+                                <td class="py-2 px-2 text-muted">{{ $plant->kategori->nama ?? '-' }}</td>
+                                <td class="py-2 px-2 text-center">
+                                    <span class="badge {{ $plant->kondisi === 'Sakit' ? 'bg-label-danger' : 'bg-label-warning' }} px-3 py-2 rounded-pill fw-semibold">
+                                        {{ $plant->kondisi }}
+                                    </span>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="3" class="text-center text-success fw-medium py-5">
+                                    <i class="bx bx-check-circle fs-3 mb-2 d-block"></i>
+                                    Semua tanaman dalam kondisi sehat!
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm border-0 rounded-4">
+            <div class="card-body p-4 p-md-5">
+                <h5 class="card-title fw-bold mb-4 text-dark">Event Terbaru</h5>
+                <div class="table-responsive border rounded-3">
+                    <table class="table table-hover table-sm align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="py-3 px-3">Tanggal</th>
+                                <th class="py-3 px-2">Tipe Event</th>
+                                <th class="py-3 px-2">Tanaman</th>
+                            </tr>
+                        </thead>
+                        <tbody class="border-top-0">
+                            @forelse ($eventTerbaru as $event)
+                            <tr>
+                                <td class="py-2 px-3 text-muted">
+                                    <i class="bx bx-calendar me-1"></i> {{ \Carbon\Carbon::parse($event->tgl_event)->format('d/m/Y') }}
+                                </td>
+                                <td class="py-2 px-2 fw-bold text-primary">{{ $event->tipe_event }}</td>
+                                <td class="py-2 px-2 text-dark">{{ $event->plant->nama_tanaman ?? '-' }}</td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="3" class="text-center text-muted py-5">
+                                    <i class="bx bx-calendar-x fs-3 mb-2 d-block"></i>
+                                    Belum ada data event.
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const kategoriLabels = @json($tanamanPerKategori->pluck('nama'));
+    const kategoriData = @json($tanamanPerKategori->pluck('plants_count'));
+
+    new Chart(document.getElementById('chartKategori'), {
+        type: 'bar',
+        data: {
+            labels: kategoriLabels,
+            datasets: [{
+                label: 'Jumlah Tanaman',
+                data: kategoriData,
+                backgroundColor: '#696cff',
+                borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+        }
+    });
+
+    const kondisiLabels = @json($tanamanPerKondisi->keys());
+    const kondisiData = @json($tanamanPerKondisi->values());
+
+    new Chart(document.getElementById('chartKondisi'), {
+        type: 'doughnut',
+        data: {
+            labels: kondisiLabels,
+            datasets: [{
+                data: kondisiData,
+                backgroundColor: ['#71dd37', '#ffab00', '#ff3e1d'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            cutout: '75%',
+            plugins: {
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+});
+</script>
 @endsection

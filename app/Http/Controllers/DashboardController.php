@@ -16,10 +16,45 @@ class DashboardController extends Controller
     public function index()
     {
         $totalKategori = Kategori::count();
-        $totalTanaman = Plant::count();
+        $totalPlant = Plant::count();
         $totalEvent = Event::count();
+        
+        $totalPerluPerhatian = Plant::where('kondisi', '!=', 'Sehat')->count();
+        
+        $tanamanPerKategori = Kategori::query()
+            ->withCount('plants')
+            ->orderByDesc('plants_count')
+            ->get(['id', 'nama']);
+            
+        $kondisiCounts = Plant::select('kondisi')
+            ->selectRaw('count(*) as total')
+            ->groupBy('kondisi')
+            ->pluck('total', 'kondisi');
+            
+        $tanamanPerKondisi = collect(['Sehat', 'Kurang Sehat', 'Sakit'])
+            ->mapWithKeys(fn ($kondisi) => [$kondisi => $kondisiCounts[$kondisi] ?? 0]);
+            
+        $tanamanPerluPerhatian = Plant::with('kategori')
+            ->where('kondisi', '!=', 'Sehat')
+            ->orderBy('kondisi')
+            ->limit(5)
+            ->get();
+            
+        $eventTerbaru = Event::with('plant')
+            ->orderByDesc('tgl_event')
+            ->limit(5)
+            ->get();
 
-        return view('dashboard', compact('totalKategori', 'totalTanaman', 'totalEvent'));
+        return view('dashboard', compact(
+            'totalKategori',
+            'totalPlant',
+            'totalEvent',
+            'totalPerluPerhatian',
+            'tanamanPerKategori',
+            'tanamanPerKondisi',
+            'tanamanPerluPerhatian',
+            'eventTerbaru'
+        ));
     }
 
     /**
